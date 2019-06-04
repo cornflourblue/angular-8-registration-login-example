@@ -1,0 +1,42 @@
+{
+    "name": "angular-8-registration-login-example",
+    "version": "1.0.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cornflourblue/angular-8-registration-login-example.git"
+    },
+    "scripts": {
+        "build": "webpack --mode production",
+        "start": "webpack-dev-server --mode development --open"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "@angular/animations": "^8.0.0",
+        "@angular/cdk": "^8.0.0",
+        "@angular/common": "^8.0.0",
+        "@angular/compiler": "^8.0.0",
+        "@angular/core": "^8.0.0",
+        "@angular/forms": "^8.0.0",
+        "@angular/material": "^8.0.0",
+        "@angular/platform-browser": "^8.0.0",
+        "@angular/platform-browser-dynamic": "^8.0.0",
+        "@angular/router": "^8.0.0",
+        "core-js": "^3.1.3",
+        "rxjs": "^6.3.3",
+        "zone.js": "^0.9.1"
+    },
+    "devDependencies": {
+        "@types/node": "^12.0.4",
+        "angular2-template-loader": "^0.6.2",
+        "css-loader": "^2.1.1",
+        "html-webpack-plugin": "^3.2.0",
+        "mini-css-extract-plugin": "^0.7.0",
+        "raw-loader": "^1.0.0",
+        "style-loader": "^0.23.1",
+        "ts-loader": "^6.0.1",
+        "typescript": "^3.1.3",
+        "webpack": "^4.32.2",
+        "webpack-cli": "^3.1.2",
+        "webpack-dev-server": "^3.1.10"
+    }
+}
