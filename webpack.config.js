@@ -17,16 +17,12 @@ module.exports = {
                 use: ['ts-loader', 'angular2-template-loader']
             },
             {
-                test: /\.(html|css)$/,
-                use: 'raw-loader'
+                test: /\.html$/,
+                use: 'html-loader'
             },
             {
                 test: /\.less$/,
-                use: [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader' },
-                    { loader: 'less-loader' }
-                ]
+                use: ['style-loader', 'css-loader', 'less-loader']
             },
 
             // workaround for warning: System.import() is deprecated and will be removed soon. Use import() instead.
