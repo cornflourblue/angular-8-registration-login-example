@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '@/_services';
 
-@Component({templateUrl: 'login.component.html'})
+@Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService
     ) {
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) { 
+        if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
         }
     }
@@ -40,6 +40,9 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
+
+        // reset alerts on submit
+        this.alertService.clear();
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {

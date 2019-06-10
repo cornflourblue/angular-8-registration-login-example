@@ -6,28 +6,27 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
 
-import { AppComponent } from './app.component';
-import { routing } from './app.routing';
-
-import { AlertComponent } from './_components';
+import { appRoutingModule } from './app.routing';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
+import { AlertComponent } from './_components';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        routing
+        appRoutingModule
     ],
     declarations: [
         AppComponent,
-        AlertComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        AlertComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -38,5 +37,4 @@ import { RegisterComponent } from './register';
     ],
     bootstrap: [AppComponent]
 })
-
-export class AppModule { }
+export class AppModule { };

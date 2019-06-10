@@ -20,14 +20,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function handleRoute() {
             switch (true) {
-                case url.endsWith('/users/register') && method === 'POST':
-                    return register();
                 case url.endsWith('/users/authenticate') && method === 'POST':
                     return authenticate();
+                case url.endsWith('/users/register') && method === 'POST':
+                    return register();
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
-                case url.match(/\/users\/\d+$/) && method === 'GET':
-                    return getUserById();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
                     return deleteUser();
                 default:
@@ -37,6 +35,19 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         // route functions
+
+        function authenticate() {
+            const { username, password } = body;
+            const user = users.find(x => x.username === username && x.password === password);
+            if (!user) return error('Username or password is incorrect');
+            return ok({
+                id: user.id,
+                username: user.username,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                token: 'fake-jwt-token'
+            })
+        }
 
         function register() {
             const user = body
@@ -52,29 +63,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok();
         }
 
-        function authenticate() {
-            const { username, password } = body;
-            const user = users.find(x => x.username === username && x.password === password);
-            if (!user) return error('Username or password is incorrect');
-            return ok({
-                id: user.id,
-                username: user.username,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                token: 'fake-jwt-token'
-            })
-        }
-
         function getUsers() {
             if (!isLoggedIn()) return unauthorized();
             return ok(users);
-        }
-
-        function getUserById() {
-            if (!isLoggedIn()) return unauthorized();
-
-            const user = users.find(x => x.id == idFromUrl());
-            return ok(user);
         }
 
         function deleteUser() {
@@ -91,12 +82,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return of(new HttpResponse({ status: 200, body }))
         }
 
-        function unauthorized() {
-            return throwError({ status: 401, error: { message: 'Unauthorised' } });
-        }
-
         function error(message) {
             return throwError({ error: { message } });
+        }
+
+        function unauthorized() {
+            return throwError({ status: 401, error: { message: 'Unauthorised' } });
         }
 
         function isLoggedIn() {
