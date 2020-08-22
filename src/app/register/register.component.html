@@ -15,6 +15,17 @@
         </div>
     </div>
     <div class="form-group">
+        <label for="Sex">Sex</label>
+        <input type="radio" id="male" name="Sex" value="male">
+<label for="male">Male</label><br>
+<input type="radio" id="female" name="Sex" value="female">
+<label for="female">Female</label><br>
+        <input type="radio" formControlName="Sex" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+        <div *ngIf="submitted && f.Sex.errors" class="invalid-feedback">
+            <div *ngIf="f.Sex.errors.required">Sex is required</div>
+        </div>
+    </div>
+    <div class="form-group">
         <label for="username">Username</label>
         <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
