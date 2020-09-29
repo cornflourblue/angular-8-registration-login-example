@@ -37,7 +37,7 @@ module.exports = {
         new webpack.DefinePlugin({
             // global app config object
             config: JSON.stringify({
-                apiUrl: 'http://localhost:4000'
+                apiUrl: '/api' // 'http://localhost:4000'
             })
         }),
 
